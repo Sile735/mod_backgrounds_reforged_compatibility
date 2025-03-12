@@ -7,13 +7,7 @@ https://www.nexusmods.com/battlebrothers/mods/769
 
 ## Major Changes
 
-## Additions
-
-## Balance & Polishing
-
-## Quality of Life
-
-## Fixes
+https://docs.google.com/spreadsheets/d/1lBG9PbSkDyVcI7pf9oyUDSJL6zbJjQQLcuhb3NCFpfA/edit?gid=457849423#gid=457849423
 
 # Requirements
 
