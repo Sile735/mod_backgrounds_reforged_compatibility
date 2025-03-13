@@ -2,19 +2,6 @@
 	q.create = @(__original) function()
 	{
 		__original();
-		this.m.PerkTreeMultipliers = {
-			"pg.rf_agile": 0,
-			"pg.rf_fast": 0,
-			"pg.rf_tactician": 0, 
-			"pg.rf_trained": 0,
-			"pg.rf_dagger": 0, 
-			"pg.rf_spear": 0,
-			"pg.rf_polearm": 0,
-			"pg.rf_sword": 0.23,
-			"pg.special.rf_leadership": 0,
-		};
-
-		::MSU.Table.merge(this.m.PerkTreeMultipliers, ::Reforged.Skills.PerkTreeMultipliers.MeleeOnly);
 
 		this.m.PerkTree = ::new(::DynamicPerks.Class.PerkTree).init({
 			DynamicMap = {
@@ -29,5 +16,30 @@
 				]
 			}
 		});
+	}
+
+	q.getPerkGroupMultiplier = @(__original) function( _groupID, _perkTree )
+	{
+		if (::Reforged.Skills.getPerkGroupMultiplier_MeleeOnly(_groupID, _perkTree) == 0)
+			return 0;
+
+		switch(_groupID)
+		{
+			case "pg.rf_agile":
+			case "pg.rf_fast":
+			case "pg.rf_tactician":
+			case "pg.rf_trained":
+			case "pg.rf_dagger":
+			case "pg.rf_spear":
+			case "pg.rf_polearm":
+			case "pg.special.rf_leadership":
+				return 0;
+
+			case "pg.rf_sword":
+				return 0.23;
+
+			default:
+				return __original(_groupID, _perkTree);
+		}
 	}
 });

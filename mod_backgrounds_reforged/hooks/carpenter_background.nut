@@ -2,12 +2,6 @@
 	q.create = @(__original) function()
 	{
 		__original();
-		this.m.PerkTreeMultipliers = {
-			"pg.rf_vigorous": 0.55, 
-			"pg.rf_unstoppable": 1.5			
-		};
-
-		::MSU.Table.merge(this.m.PerkTreeMultipliers, ::Reforged.Skills.PerkTreeMultipliers.MeleeBackground);
 
 		this.m.PerkTree = ::new(::DynamicPerks.Class.PerkTree).init({
 			DynamicMap = {
@@ -31,5 +25,19 @@
 				return _collection.getMin() - 1;
 		}
 	}
-	
+
+	q.getPerkGroupMultiplier = @(__original) function( _groupID, _perkTree )
+	{
+		switch(_groupID)
+		{
+			case "pg.rf_vigorous":
+				return 0.55;
+
+			case "pg.rf_unstoppable":
+				return 1.5;
+
+			default:
+				return __original(_groupID, _perkTree);
+		}
+	}
 });
