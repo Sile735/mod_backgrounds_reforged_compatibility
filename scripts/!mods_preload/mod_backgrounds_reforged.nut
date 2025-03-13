@@ -1,8 +1,7 @@
 ::modBR <- {
-	ID = "mod_backgrounds_reforged",
-	Name = "Backgrounds Reforged",
-	Version = "0.6.1",
-	// GitHubURL = "https://github.com/YOURNAME/mod_MODID",
+	ID = "mod_backgrounds_and_events_reforged_patch",
+	Name = "More Backgrounds and Events Reforged Patch",
+	Version = "0.7.0"
 }
 
 ::modBR.HooksMod <- ::Hooks.register(::modBR.ID, ::modBR.Version, ::modBR.Name);
