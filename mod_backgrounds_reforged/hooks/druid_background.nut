@@ -2,16 +2,6 @@
 	q.create = @(__original) function()
 	{
 		__original();
-		this.m.PerkTreeMultipliers = {			
-			"pg.rf_tough": 2, 
-			"pg.rf_vigorous": 1.5, 
-
-			"pg.special.rf_leadership": 4, 			
-			"pg.special.rf_student": 4, 
-			"pg.special.rf_gifted": -1
-		};
-
-		::MSU.Table.merge(this.m.PerkTreeMultipliers, ::Reforged.Skills.PerkTreeMultipliers.MeleeBackground);
 
 		this.m.PerkTree = ::new(::DynamicPerks.Class.PerkTree).init({
 			DynamicMap = {
@@ -27,7 +17,7 @@
 	q.getPerkGroupCollectionMin = @() function( _collection )
 	{
 		switch (_collection.getID())
-		{		
+		{
 			case "pgc.rf_shared_1":
 				return _collection.getMin() + 1;
 
@@ -35,5 +25,26 @@
 				return _collection.getMin() - 1;
 		}
 	}
-	
+
+	q.getPerkGroupMultiplier = @(__original) function( _groupID, _perkTree )
+	{
+		switch(_groupID)
+		{
+			case "pg.special.rf_gifted":
+				return -1;
+
+			case "pg.rf_vigorous":
+				return 1.5;
+
+			case "pg.rf_tough":
+				return 2;
+
+			case "pg.special.rf_leadership":
+			case "pg.special.rf_student":
+				return 4;
+
+			default:
+				return __original(_groupID, _perkTree);
+		}
+	}
 });
