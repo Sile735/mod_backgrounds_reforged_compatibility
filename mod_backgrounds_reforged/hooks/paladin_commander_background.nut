@@ -2,37 +2,13 @@
 	q.create = @(__original) function()
 	{
 		__original();
-		this.m.PerkTreeMultipliers = {
-			"pg.rf_agile": 0.5, 
-			"pg.rf_fast": 0.25,
-			"pg.rf_tactician": 0,
-			"pg.rf_tough": 5, 
-			"pg.rf_trained": 4,
-			"pg.rf_unstoppable": 7,
-			"pg.rf_vicious": 0,
-			"pg.rf_vigorous": 8, 
-			"pg.rf_dagger": 0, 
-			"pg.rf_polearm": 0, 
-			"pg.rf_light_armor": 0
-			
-			"pg.special.rf_leadership": 0,
-
-			"pg.rf_back_to_basics": -1,
-			"pg.special.rf_professional": -1,
-			"pg.rf_back_to_basics": -1
-		};
-
-		::MSU.Table.merge(this.m.PerkTreeMultipliers, ::Reforged.Skills.PerkTreeMultipliers.MeleeOnly);
-		::MSU.Table.merge(this.m.PerkTreeMultipliers, ::Reforged.Skills.PerkTreeMultipliers.MeleeSpecialist);
 
 		this.m.PerkTree = ::new(::DynamicPerks.Class.PerkTree).init({
 			DynamicMap = {
 				"pgc.rf_exclusive_1": [
 					"pg.rf_soldier"
 				],
-				"pgc.rf_shared_1": [
-					
-				],
+				"pgc.rf_shared_1": [],
 				"pgc.rf_weapon": [],
 				"pgc.rf_armor": [
 					"pg.rf_heavy_armor"
@@ -57,6 +33,48 @@
 		}
 	}
 
+	q.getPerkGroupMultiplier = @(__original) function( _groupID, _perkTree )
+	{
+		if (::Reforged.Skills.getPerkGroupMultiplier_MeleeOnly(_groupID, _perkTree) == 0)
+			return 0;
+
+		switch(_groupID)
+		{
+			case "pg.special.rf_back_to_basics":
+			case "pg.special.rf_professional":
+				return -1;
+
+			case "pg.special.rf_leadership":
+			case "pg.rf_tactician":
+			case "pg.rf_vicious":
+			case "pg.rf_dagger":
+			case "pg.rf_polearm":
+			case "pg.rf_light_armor":
+				return 0;
+
+			case "pg.rf_agile":
+				return 0.5;
+
+			case "pg.rf_fast":
+				return 0.25;
+
+			case "pg.rf_trained":
+				return 4;
+
+			case "pg.rf_tough":
+				return 5;
+
+			case "pg.rf_unstoppable":
+				return 7;
+
+			case "pg.rf_vigorous":
+				return 8;
+
+			default:
+				return __original(_groupID, _perkTree);
+		}
+	}
+
 	q.getTooltip = @(__original) function()
 	{
 		local ret = __original();
@@ -64,7 +82,7 @@
 			id = 10,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = ::Reforged.Mod.Tooltips.parseString("Has the [Exude Confidence |Perk+perk_rf_exude_confidence] perk permanently for free")
+			text = ::Reforged.Mod.Tooltips.parseString("Has the [Exude Confidence|Perk+perk_rf_exude_confidence] [perk|Concept.Perk] permanently for free")
 		});
 		return ret;
 	}
@@ -79,5 +97,4 @@
 		}
 		return __original();
 	}
-	
 });

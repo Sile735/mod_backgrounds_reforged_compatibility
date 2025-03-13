@@ -2,23 +2,37 @@
 	q.create = @(__original) function()
 	{
 		__original();
-		this.m.PerkTreeMultipliers = {
-			"pg.rf_agile": 1.25,
-			"pg.rf_vigorous": 1.5, 
-			"pg.rf_polearm": 2			
-		};
 
-		::MSU.Table.merge(this.m.PerkTreeMultipliers, ::Reforged.Skills.PerkTreeMultipliers.RangedBackground);
-		
 		this.m.PerkTree = ::new(::DynamicPerks.Class.PerkTree).init({
 			DynamicMap = {
 				"pgc.rf_exclusive_1": [],
 				"pgc.rf_shared_1": [],
-				"pgc.rf_weapon": ["pg.rf_crossbow"],
+				"pgc.rf_weapon": [
+					"pg.rf_crossbow"
+				],
 				"pgc.rf_armor": [],
-				"pgc.rf_fighting_style": ["pg.rf_ranged"]
+				"pgc.rf_fighting_style": [
+					"pg.rf_ranged"
+				]
 			}
 		});
 	}
-		
+
+	q.getPerkGroupMultiplier = @(__original) function( _groupID, _perkTree )
+	{
+		switch(_groupID)
+		{
+			case "pg.rf_agile":
+				return 1.25;
+
+			case "pg.rf_vigorous":
+				return 1.5;
+
+			case "pg.rf_polearm":
+				return 2;
+
+			default:
+				return __original(_groupID, _perkTree);
+		}
+	}
 });

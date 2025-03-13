@@ -1,12 +1,7 @@
 ::modBR.HooksMod.hook("scripts/skills/backgrounds/hackflows/blacksmith_background", function(q) {
 	q.create = @(__original) function()
 	{
-		::logInfo("Blacksmith Background Created");
 		__original();
-		this.m.PerkTreeMultipliers = {			
-		};
-
-		::MSU.Table.merge(this.m.PerkTreeMultipliers, ::Reforged.Skills.PerkTreeMultipliers.MeleeBackground);
 
 		this.m.PerkTree = ::new(::DynamicPerks.Class.PerkTree).init({
 			DynamicMap = {

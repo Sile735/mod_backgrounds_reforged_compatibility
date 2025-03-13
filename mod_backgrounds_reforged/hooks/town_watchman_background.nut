@@ -2,29 +2,36 @@
 	q.create = @(__original) function()
 	{
 		__original();
-		this.m.PerkTreeMultipliers = {
-			"pg.rf_fast": 1.25,
-			"pg.rf_tough": 1.25, 			
-			"pg.rf_vigorous": 2,
-			"pg.special.rf_leadership": 0.225
-			
-		};
 
-		::MSU.Table.merge(this.m.PerkTreeMultipliers, ::Reforged.Skills.PerkTreeMultipliers.MeleeBackground);
-		
 		this.m.PerkTree = ::new(::DynamicPerks.Class.PerkTree).init({
 			DynamicMap = {
 				"pgc.rf_exclusive_1": [
 					"pg.rf_militia"
 				],
 				"pgc.rf_shared_1": [],
-				"pgc.rf_weapon": [
-					
-				],
+				"pgc.rf_weapon": [],
 				"pgc.rf_armor": [],
 				"pgc.rf_fighting_style": []
 			}
 		});
-	}	
-	
+	}
+
+	q.getPerkGroupMultiplier = @(__original) function( _groupID, _perkTree )
+	{
+		switch(_groupID)
+		{
+			case "pg.special.rf_leadership":
+				return 0.225;
+
+			case "pg.rf_fast":
+			case "pg.rf_tough":
+				return 1.25;
+
+			case "pg.rf_vigorous":
+				return 2;
+
+			default:
+				return __original(_groupID, _perkTree);
+		}
+	}
 });

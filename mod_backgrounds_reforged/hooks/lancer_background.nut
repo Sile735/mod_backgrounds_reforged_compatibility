@@ -2,24 +2,7 @@
 	q.create = @(__original) function()
 	{
 		__original();
-		this.m.PerkTreeMultipliers = {
-			"pg.rf_agile": 1.5, 
-			"pg.rf_fast": 2, 			
-			"pg.rf_unstoppable": 2, 
-			"pg.rf_vicious": 2,			
-			"pg.rf_vigorous": 2.5,
-			"pg.rf_cleaver": 0, 
-			"pg.rf_dagger": 0, 
-			"pg.rf_sword": 0, 
-			"pg.rf_throwing": 0, 
 
-			"pg.special.rf_leadership": 4, 			
-			"pg.rf_tactician": 7.5			
-		};
-
-		::MSU.Table.merge(this.m.PerkTreeMultipliers, ::Reforged.Skills.PerkTreeMultipliers.MeleeOnly);
-		::MSU.Table.merge(this.m.PerkTreeMultipliers, ::Reforged.Skills.PerkTreeMultipliers.MeleeSpecialist);
-		
 		this.m.PerkTree = ::new(::DynamicPerks.Class.PerkTree).init({
 			DynamicMap = {
 				"pgc.rf_exclusive_1": [
@@ -27,7 +10,7 @@
 				],
 				"pgc.rf_shared_1": [],
 				"pgc.rf_weapon": [
-					"pg.rf_polearm", 
+					"pg.rf_polearm",
 					"pg.rf_spear"
 				],
 				"pgc.rf_armor": [],
@@ -41,8 +24,41 @@
 		switch (_collection.getID())
 		{
 			case "pgc.rf_weapon":
-				return _collection.getMin() + 2;		
-			
+				return _collection.getMin() + 2;
+		}
+	}
+
+	q.getPerkGroupMultiplier = @(__original) function( _groupID, _perkTree )
+	{
+		if (::Reforged.Skills.getPerkGroupMultiplier_MeleeOnly(_groupID, _perkTree) == 0)
+			return 0;
+
+		switch(_groupID)
+		{
+			case "pg.rf_cleaver":
+			case "pg.rf_dagger":
+			case "pg.rf_sword":
+				return 0;
+
+			case "pg.rf_agile":
+				return 1.5;
+
+			case "pg.rf_fast":
+			case "pg.rf_unstoppable":
+			case "pg.rf_vicious":
+				return 2;
+
+			case "pg.rf_vigorous":
+				return 2.5;
+
+			case "pg.special.rf_leadership":
+				return 4;
+
+			case "pg.rf_tactician":
+				return 7.5;
+
+			default:
+				return __original(_groupID, _perkTree);
 		}
 	}
 
@@ -53,7 +69,7 @@
 			id = 10,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = ::Reforged.Mod.Tooltips.parseString("Has the [Polearm Mastery|Perk+perk_mastery_polearm] perk permanently for free")
+			text = ::Reforged.Mod.Tooltips.parseString("Has the [Polearm Mastery|Perk+perk_mastery_polearm] [perk|Concept.Perk] permanently for free")
 		});
 		return ret;
 	}
