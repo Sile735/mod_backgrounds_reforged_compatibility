@@ -11,9 +11,9 @@
 	::modBR.Mod <- ::MSU.Class.Mod(::modBR.ID, ::modBR.Version, ::modBR.Name);
 	::logInfo("backgrounds compatiblilty mod loaded");
 
-	// Add an official mod source and turn on automatic ingame reminder about new updates
-	// ::modMODID.Mod.Registry.addModSource(::MSU.System.Registry.ModSourceDomain.GitHub, ::mod_MODID.GitHubURL);
-	// ::modMODID.Mod.Registry.setUpdateSource(::MSU.System.Registry.ModSourceDomain.GitHub);
+	// Add an official mod source and turn on automatic in-game reminder about new updates
+	::modBR.Mod.Registry.addModSource(::MSU.System.Registry.ModSourceDomain.GitHub, "https://github.com/Sile735/mod_backgrounds_reforged_compatibility");
+	::modBR.Mod.Registry.setUpdateSource(::MSU.System.Registry.ModSourceDomain.GitHub);
 
 	::include("mod_backgrounds_reforged/load");		// Load mod adjustments and other hooks	
 });
