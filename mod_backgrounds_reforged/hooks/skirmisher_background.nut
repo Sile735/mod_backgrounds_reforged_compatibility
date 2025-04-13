@@ -36,23 +36,25 @@
 	{
 		switch(_groupID)
 		{
-			case "pg.special.rf_leadership":
-			case "pg.rf_tough":
-				return 0.75;
-
 			case "pg.rf_agile":
 				return 1.25;
-
-			case "pg.special.rf_back_to_basics":
-				return 1.5;
 
 			case "pg.rf_fast":
 				return 3;
 
+			case "pg.rf_tough":
+				return 0.75;
+
 			case "pg.rf_trained":
 			case "pg.rf_vigorous":
+
 			case "pg.rf_tactician":
 				return 2;
+
+			case "pg.special.rf_back_to_basics":
+				return 1.5;
+
+			case "pg.special.rf_leadership":
 
 			default:
 				return __original(_groupID, _perkTree);

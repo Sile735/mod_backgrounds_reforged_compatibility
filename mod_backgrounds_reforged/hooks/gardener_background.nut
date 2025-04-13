@@ -35,9 +35,7 @@
 	{
 		switch(_groupID)
 		{
-			case "pg.special.rf_leadership":
-				return 0.5;
-
+			
 			case "pg.rf_fast":
 				return 2;
 
@@ -46,6 +44,9 @@
 
 			case "pg.rf_vigorous":
 				return 1.33;
+
+			case "pg.special.rf_leadership":
+				return 0.5;
 
 			default:
 				return __original(_groupID, _perkTree);
