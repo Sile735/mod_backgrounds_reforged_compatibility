@@ -22,11 +22,8 @@
 	{
 		switch (_collection.getID())
 		{
-			case "pgc.rf_shared_1":
-				return _collection.getMin() + 1;
-
 			case "pgc.rf_weapon":
-				return _collection.getMin() + 2;
+				return _collection.getMin() + 1;
 
 			case "pgc.rf_armor":
 				return _collection.getMin() + 1;
