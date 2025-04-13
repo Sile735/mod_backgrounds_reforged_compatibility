@@ -31,9 +31,7 @@
 	q.getPerkGroupMultiplier = @(__original) function( _groupID, _perkTree )
 	{
 		switch(_groupID)
-		{
-			case "pg.special.rf_leadership":
-				return 2.5;
+		{			
 
 			case "pg.rf_tough":
 			case "pg.rf_trained":
@@ -44,6 +42,9 @@
 
 			case "pg.rf_vigorous":
 				return 2.5;
+
+			case "pg.special.rf_leadership":
+				return 5;
 
 			case "pg.rf_fast":
 				return 4;

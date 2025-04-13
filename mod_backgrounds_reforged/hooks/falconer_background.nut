@@ -26,7 +26,7 @@
 		{
 			case "pg.rf_heavy_armor":
 			case "pg.rf_shield":
-				return -1;
+				return 0;
 
 			case "pg.rf_trained":
 				return 0.5;

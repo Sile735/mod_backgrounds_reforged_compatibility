@@ -44,6 +44,7 @@
 
 			case "pg.rf_fast":
 			case "pg.rf_vicious":
+				return 2.5;
 			case "pg.rf_dagger":
 				return 0;
 

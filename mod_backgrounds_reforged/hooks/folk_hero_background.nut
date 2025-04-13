@@ -50,12 +50,15 @@
 			case "pg.rf_agile":
 				return 1.33;
 
-			case "pg.rf_tough":
-				return 3.33;
-
 			case "pg.rf_trained":
 			case "pg.special.rf_leadership":
 				return 2;
+
+			case "pg.rf_tough":
+				return 3.33;
+
+			case "pg.rf_vigorous":
+				return 3.33;			
 
 			case "pg.rf_unstoppable":
 				return 5;

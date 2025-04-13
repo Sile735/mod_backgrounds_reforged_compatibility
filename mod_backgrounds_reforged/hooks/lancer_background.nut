@@ -39,6 +39,8 @@
 			case "pg.rf_dagger":
 			case "pg.rf_sword":
 				return 0;
+			case "pg.rf_throwing":
+				return 0;
 
 			case "pg.rf_agile":
 				return 1.5;
