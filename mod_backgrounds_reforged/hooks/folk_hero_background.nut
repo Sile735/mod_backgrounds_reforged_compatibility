@@ -2,21 +2,7 @@
 	q.create = @(__original) function()
 	{
 		__original();
-		this.m.PerkTreeMultipliers = {			
-			"pg.rf_agile": 1.33, 
-			"pg.rf_tough": 3.33, 
-			"pg.rf_trained": 2,
-			"pg.rf_unstoppable": 5, 
-			"pg.rf_vigorous": 3.33,
-			"pg.rf_dagger": 0,
-			"pg.rf_leadership": 2, 
 
-			"pg.special.rf_gifted": -1		 				
-		};
-
-		::MSU.Table.merge(this.m.PerkTreeMultipliers, ::Reforged.Skills.PerkTreeMultipliers.MeleeOnly);
-		::MSU.Table.merge(this.m.PerkTreeMultipliers, ::Reforged.Skills.PerkTreeMultipliers.MeleeSpecialist);
-		
 		this.m.PerkTree = ::new(::DynamicPerks.Class.PerkTree).init({
 			DynamicMap = {
 				"pgc.rf_exclusive_1": [
@@ -33,7 +19,7 @@
 	q.getPerkGroupCollectionMin = @() function( _collection )
 	{
 		switch (_collection.getID())
-		{		
+		{
 			case "pgc.rf_shared_1":
 				return _collection.getMin() + 2;
 
@@ -45,7 +31,40 @@
 
 			case "pgc.rf_fighting_style":
 				return _collection.getMin() + 1;
+		}
+	}
 
+	q.getPerkGroupMultiplier = @(__original) function( _groupID, _perkTree )
+	{
+		if (::Reforged.Skills.getPerkGroupMultiplier_MeleeOnly(_groupID, _perkTree) == 0)
+			return 0;
+
+		switch(_groupID)
+		{
+			case "pg.special.rf_gifted":
+				return -1;
+
+			case "pg.rf_dagger":
+				return 0;
+
+			case "pg.rf_agile":
+				return 1.33;
+
+			case "pg.rf_trained":
+			case "pg.special.rf_leadership":
+				return 2;
+
+			case "pg.rf_tough":
+				return 3.33;
+
+			case "pg.rf_vigorous":
+				return 3.33;			
+
+			case "pg.rf_unstoppable":
+				return 5;
+
+			default:
+				return __original(_groupID, _perkTree);
 		}
 	}
 
@@ -70,5 +89,4 @@
 		}
 		perkTree.addPerk("perk.rf_battle_fervor", 1);
 	}
-		
 });
