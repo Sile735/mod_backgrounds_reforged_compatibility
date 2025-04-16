@@ -26,3 +26,5 @@ jobs:
         with:
           artifacts: "mod_backgrounds_reforged_compatibility-${{ github.event.release.tag_name }}.zip"
           token: ${{ secrets.GITHUB_TOKEN }}
+          allowUpdates: true
+
