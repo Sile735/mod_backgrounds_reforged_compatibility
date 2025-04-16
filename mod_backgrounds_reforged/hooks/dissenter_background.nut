@@ -1,9 +1,7 @@
 ::modBR.HooksMod.hook("scripts/skills/backgrounds/hackflows/dissenter_background", function(q) {
-	q.create = @(__original) function()
+	q.createPerkTreeBlueprint = @() function()
 	{
-		__original();
-
-		this.m.PerkTree = ::new(::DynamicPerks.Class.PerkTree).init({
+		return ::new(::DynamicPerks.Class.PerkTree).init({
 			DynamicMap = {
 				"pgc.rf_exclusive_1": [],
 				"pgc.rf_shared_1": [],
