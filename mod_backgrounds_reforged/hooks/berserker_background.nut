@@ -34,7 +34,7 @@
 				return 0;
 
 			case "pg.rf_sword":
-				return 0.23;
+				return 0;
 
 			default:
 				return __original(_groupID, _perkTree);
