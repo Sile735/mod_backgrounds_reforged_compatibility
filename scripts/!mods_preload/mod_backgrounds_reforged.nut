@@ -1,7 +1,7 @@
 ::modBR <- {
 	ID = "mod_backgrounds_and_events_reforged_patch",
 	Name = "More Backgrounds and Events Reforged Patch",
-	Version = "0.7.0"
+	Version = "0.7.2"
 }
 
 ::modBR.HooksMod <- ::Hooks.register(::modBR.ID, ::modBR.Version, ::modBR.Name);
