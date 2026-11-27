@@ -26,7 +26,7 @@
 		switch(_groupID)
 		{
 			case "pg.rf_tough":
-			case "pg.rf_leadership":
+			case "pg.special.rf_leadership":	// was "pg.rf_leadership", which does not exist
 				return 0.75;
 
 			case "pg.rf_fast":

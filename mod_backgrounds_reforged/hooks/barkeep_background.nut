@@ -19,7 +19,7 @@
 		switch(_groupID)
 		{
 			case "pg.rf_fast":
-			case "pg.rf_swift_strikes":
+			case "pg.rf_swift":	// "Swift Strikes" (was "pg.rf_swift_strikes", which does not exist)
 				return 0.5;
 
 			case "pg.rf_trained":

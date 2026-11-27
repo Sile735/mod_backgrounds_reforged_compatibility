@@ -37,7 +37,7 @@
 			case "pg.rf_vigorous":
 				return 0.8;
 
-			case "pg.rf_gifted":
+			case "pg.special.rf_gifted":	// was "pg.rf_gifted", which does not exist
 				return 5;
 
 			default:
